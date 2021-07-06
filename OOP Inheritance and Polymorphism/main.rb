@@ -1,25 +1,22 @@
 require_relative "player"
 require_relative "pro"
 
-sakai = ProPlayer.new(100, 50, "Jin Sakai")
+sakai = Player.new(100, 50, "Jin Sakai", 80)
 khan = Player.new(500, 50, "Khotun Khan")
 
 puts sakai
 puts khan
+puts
 
 while khan.alive? and sakai.alive?
-    puts sakai.hit(khan)
+    sakai.hit(khan)
+    puts khan
+    khan.hit(sakai)
     puts sakai
-    if sakai.chance?
-        puts khan.hit(sakai) 
-        puts "#{sakai.name} attack"
-        puts khan
-    else
-        puts "#{sakai.name} deflect the attack"
-    end
     if sakai.die?
         puts "#{sakai.name} is dies"
     elsif khan.die?
         puts "#{khan.name} is dies"
     end
+    puts
 end
