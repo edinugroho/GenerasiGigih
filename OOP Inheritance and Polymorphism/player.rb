@@ -1,17 +1,21 @@
 class Player
     attr_reader :name
 
-    def initialize(health,damage,name)
-       @health, @damage, @name = health, damage, name
+    def initialize(health,damage,name,deflect = 0)
+       @health, @damage, @name, @deflect = health, damage, name, deflect
     end
 
     def hit(enemy)
+        puts "#{@name} attacks #{enemy.name} with #{@damage} damage"
         enemy.hited(@damage)
-        puts "#{@name} attack #{enemy.name} with #{@damage} damage"
     end
 
     def hited(damage)
-        @health -= damage
+        if rand(100) >= @deflect and @deflect != 0 
+            puts "#{@name} deflects the attack"
+        else
+            @health -= damage
+        end
     end
 
     def alive?
