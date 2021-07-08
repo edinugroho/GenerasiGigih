@@ -12,11 +12,7 @@ class Player
     end
 
     def hited(damage)
-        # if rand(100) >= @deflect and @deflect != 0 
-        #     puts "#{@name} deflects the attack"
-        # else
         @health -= damage
-        # end
     end
 
     def alive?
