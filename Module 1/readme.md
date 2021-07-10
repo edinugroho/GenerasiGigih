@@ -2,9 +2,11 @@
 
 | Session | My Homework |
 | ------ | ------ |
-| Session 1 | [Code](../Module 1/Session 1) |
-| Session 2 | [Code](../Module 1/Session 2/homework) |
+| Session 1 | [Code](https://github.com/edinugroho/GenerasiGigih/tree/main/Module%201/Session%201) |
+| Session 2 | [Code](https://github.com/edinugroho/GenerasiGigih/tree/main/Module%201/Session%202/homework) |
 | Session 3 | - |
+
+## reflection
 
 In this week I learn about OOP concept. OOP concept is a paradigm who create for more easily programming modeling. This concept make anything in code in object prespective. In the object created are available attributes or properties and methods or behaviors. Many OOP concept i learned there from encapsulation, inheritance, polymorphism, and composition. The benefits of OOP that I can feel in this case are reusable objects, so we only need to create one object and we can use it over and over again. other than that if there is a change in the maintenance code it will be easier.
 
