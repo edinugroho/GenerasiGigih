@@ -1,0 +1,11 @@
+<h3>Todo List</h3>
+<ul>
+<% tasks.each do |task| %>
+  <li><%= task %></li>
+<% end %>
+</ul>
+<form method="POST" action="/task">
+    <input type="text" name="task"><br>
+    <input type="submit" value="add">
+</form>
+<a href="/task/clear">Clear Task</a>
