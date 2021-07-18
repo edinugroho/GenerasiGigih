@@ -12,7 +12,7 @@ Our food order management system database can now handle items data. But the cli
 ## My Work
 
 1. Entity relationship diagram
-[erd](https://raw.githubusercontent.com/edinugroho/GenerasiGigih/main/Module%202/Session%203/erd.png?raw=true)
+[ERD](https://raw.githubusercontent.com/edinugroho/GenerasiGigih/main/Module%202/Session%203/erd.png?raw=true)
 2. DDL
 [Code](https://github.com/edinugroho/GenerasiGigih/blob/main/Module%202/Session%203/ddl.sql)
 3. DML
@@ -27,4 +27,4 @@ ON orders.id = order_details.order_id
 LEFT JOIN items
 ON order_details.item_id = items.id
 WHERE order_details.item_id IS NOT null
-GROUP BY order_details.order_id```
+GROUP BY order_details.order_id
