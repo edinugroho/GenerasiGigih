@@ -1,0 +1,16 @@
+<body>
+    <h1>Edit Item</h1>
+        <form method="POST" action="/items/<%= id %>">
+            <input type="hidden" name="_method" value="PUT">
+            <% items.each do |item| %>
+            <input type="text" name="name" value="<%= item.name %>" placeholder="item name"><br>
+            <input type="text" name="price" value="<%= item.price %>" placeholder="item price"><br>
+            <select name="category">
+                <% categories.each do |category| %>
+                <option <%= item.category.id == category.id ? 'selected' : '' %> value="<%= category.id %>"><%= category.name %></option>
+                <% end %>
+            </select><br>
+            <% end %>
+            <input type="submit" value="Edit Item">
+        </form>
+</body>
