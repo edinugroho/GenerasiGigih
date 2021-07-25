@@ -1,0 +1,21 @@
+<body>
+    <h1>Item details</h1>
+    <%= item.name %>
+    <%= item.price %>
+    <h3>Categories</h3>
+    <ul>
+    <% item.categories.each do |category| %>
+        <li><%= category.name  %></li>
+    <% end %>
+    </ul>
+    <form method="POST" action="/item/<%= item.id %>">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="text" name="name" value="<%= item.name %>" placeholder="item name"><br>
+        <input type="text" name="price" value="<%= item.price %>" placeholder="item price"><br>
+        <% categories.each do |category| %>
+            <input type="checkbox" name="categories[]" value="<%= category.id %>">
+            <label><%= category.name %></label><br>
+        <% end %>
+        <input type="submit" value="Edit Item">
+    </form>
+</body>

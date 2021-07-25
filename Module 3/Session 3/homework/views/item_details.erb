@@ -1,0 +1,11 @@
+<body>
+    <h1>Item details</h1>
+    <%= item.name %>
+    <%= item.price %>
+    <h3>Categories</h3>
+    <ul>
+    <% item.categories.each do |category| %>
+        <li><%= category.name  %></li>
+    <% end %>
+    </ul>
+</body>

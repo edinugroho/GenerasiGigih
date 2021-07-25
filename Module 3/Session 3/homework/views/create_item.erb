@@ -1,0 +1,12 @@
+<body>
+    <h1>Create New Item</h1>
+    <form method="POST" action="/item/store">
+        <input type="text" name="name" placeholder="item name"><br>
+        <input type="text" name="price" placeholder="item price"><br>
+        <% categories.each do |category| %>
+            <input type="checkbox" name="categories[]" value="<%= category.id %>">
+            <label><%= category.name %></label><br>
+        <% end %>
+        <input type="submit" value="Add Item">
+    </form>
+</body>
