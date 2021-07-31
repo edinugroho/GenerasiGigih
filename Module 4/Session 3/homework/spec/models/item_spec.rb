@@ -14,5 +14,17 @@ describe Item do
                 expect(result).to eq(false)
             end
         end
+
+        context "with valid object" do
+            it 'should return true if filled name and price' do
+                item = Item.new({
+                    'name' => 'item name',
+                    'price' => '2000',
+                    'categories' => '',
+                })
+                result = item.valid?
+                expect(result).to eq(true)
+            end
+        end
     end
 end
