@@ -56,4 +56,15 @@ describe Item do
             end
         end 
     end
+
+    describe "#show" do
+        context "with no result" do
+            it 'should return nil' do
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("select * from items")
+                Item.all
+            end
+        end  
+    end
 end
