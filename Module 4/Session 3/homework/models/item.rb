@@ -29,7 +29,11 @@ class Item
     def self.find(id)
         client = create_db_client
         datas = client.query("select * from items where id = '#{id}'");
-        parse(datas)
+        if datas == nil
+            nil
+        else
+            parse(datas)
+        end
     end
 
     def self.parse(params)

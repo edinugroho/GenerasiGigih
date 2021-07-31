@@ -65,6 +65,16 @@ describe Item do
                 expect(mock_client).to receive(:query).with("select * from items")
                 Item.all
             end
+
+            it 'should return nil if id not found' do
+                id = 1
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("select * from items where id = '#{id}'").and_return(nil)
+                item = Item.find(id)
+
+                expect(nil).to eq(item)
+            end
         end 
 
         context "with result" do
