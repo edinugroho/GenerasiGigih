@@ -90,6 +90,21 @@ describe Category do
                     expect(expected_categories[index].name).to eq(categories[index].name)             
                 end
             end
+
+            it 'should return one category' do
+                id = 1
+                mock_category = [
+                    {'id' => 2, 'name' => 'Beverage', 'items'=> ''}
+                ]
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("select * from categories where id = '#{id}'").and_return(mock_category)
+                category = Category.find(id).first
+
+                expected_category = Category.new(mock_category.first)
+                expect(expected_category.id).to eq(category.id)
+                expect(expected_category.name).to eq(category.name)
+            end
         end
     end
 end
