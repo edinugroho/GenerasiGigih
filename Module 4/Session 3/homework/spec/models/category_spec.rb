@@ -34,5 +34,29 @@ describe Category do
                 expect(result).to eq(false)
             end
         end
+
+        context "with valid input" do
+            it 'should return true if filled name' do
+                category = Category.new({
+                    'name' => 'new category'
+                })
+
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("insert into categories (name) values ('#{category.name}')")
+                category.save
+            end
+        end 
+    end
+
+    describe "#show" do
+        context "with no result" do
+            it 'should return nil' do
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("select * from categories")
+                Category.all
+            end
+        end
     end
 end
