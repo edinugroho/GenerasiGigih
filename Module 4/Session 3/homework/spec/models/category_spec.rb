@@ -68,5 +68,28 @@ describe Category do
                 expect(nil).to eq(category)
             end
         end
+
+        context "with result" do
+            it 'should return all categories' do
+                mock_categories = [
+                    {'id' => 1, 'name' => 'Main Dish', 'items'=> ''},
+                    {'id' => 2, 'name' => 'Beverage', 'items'=> ''}
+                ]
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("select * from categories").and_return(mock_categories)
+                categories = Category.all
+
+                expected_categories = [
+                    Category.new(mock_categories[0]),
+                    Category.new(mock_categories[1])
+                ]
+
+                categories.each_with_index do |variable, index|
+                    expect(expected_categories[index].id).to eq(categories[index].id)              
+                    expect(expected_categories[index].name).to eq(categories[index].name)             
+                end
+            end
+        end
     end
 end

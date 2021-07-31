@@ -35,6 +35,13 @@ class Category
     def self.parse(params)
         if params.nil?
             nil
+        else
+            datas = Array.new
+            params.each do |data|
+                item = Category.new(data)
+                datas.push(item)
+            end
+            datas
         end
     end
 
