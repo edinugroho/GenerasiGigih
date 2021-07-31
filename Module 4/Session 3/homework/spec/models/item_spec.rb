@@ -27,4 +27,19 @@ describe Item do
             end
         end
     end
+
+    describe "#insert" do
+        context "with invalid input" do
+            it 'should return false if contain empty object' do
+                item = Item.new({
+                    'name' => '',
+                    'price' => '',
+                    'categories' => '',
+                })
+                mock_client = double
+                result = item.save
+                expect(result).to eq(false)
+            end
+        end 
+    end
 end
