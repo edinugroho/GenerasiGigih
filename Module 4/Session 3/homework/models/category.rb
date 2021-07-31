@@ -9,6 +9,10 @@ class Category
         @items = params['items']
     end
 
+    def save
+        return false unless valid?
+    end
+
     def valid?
         return false if @name.empty?
         true
