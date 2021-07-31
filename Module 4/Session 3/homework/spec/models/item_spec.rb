@@ -117,4 +117,28 @@ describe Item do
             end
         end  
     end
+
+    describe "#update" do
+        context 'with valid input' do
+            it 'should return updated item' do
+                params = {
+                    'name' => 'Seblak',
+                    'price' => 9000,
+                    'categories' => '',
+                }
+                item = Item.new({
+                    'id' => 1,
+                    'name' => 'old item',
+                    'price' => 20000,
+                    'categories' => '',
+                })
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("update items set name = '#{params['name']}' ,price = '#{params['price']}' where id = #{item.id}").and_return(params)
+                expected_result = item.update(params)
+
+                expect(expected_result).to eq(params)
+            end
+        end
+    end
 end

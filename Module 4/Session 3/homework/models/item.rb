@@ -26,6 +26,12 @@ class Item
         parse(datas) 
     end
 
+    def update(params)
+        client = create_db_client
+        client.query("update items set name = '#{params['name']}' ,price = '#{params['price']}' where id = #{id}")
+        params
+    end
+
     def self.find(id)
         client = create_db_client
         datas = client.query("select * from items where id = '#{id}'");
