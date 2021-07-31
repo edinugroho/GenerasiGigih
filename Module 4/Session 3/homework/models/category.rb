@@ -22,6 +22,16 @@ class Category
         true
     end
 
+    def self.find(id)
+        client = create_db_client
+        datas = client.query("select * from categories where id = '#{id}'");
+        if datas == nil
+            nil
+        else
+            parse(datas)
+        end
+    end
+
     def self.parse(params)
         if params.nil?
             nil

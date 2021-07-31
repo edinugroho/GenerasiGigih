@@ -57,6 +57,16 @@ describe Category do
                 expect(mock_client).to receive(:query).with("select * from categories")
                 Category.all
             end
+
+            it 'should return nil if id not found' do
+                id = 1
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("select * from categories where id = '#{id}'").and_return(nil)
+                category = Category.find(id)
+
+                expect(nil).to eq(category)
+            end
         end
     end
 end
