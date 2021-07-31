@@ -8,5 +8,13 @@ describe ItemController do
             expected_render = ItemController.index
             expect(render).to eq(expected_render)
         end
+
+        it 'should render create view' do
+            categories = Category.all
+            render = ERB.new(File.read("./views/create_item.erb")).result(binding)
+            expected_render = ItemController.create
+            expect(render).to eq(expected_render)
+        end
     end
+    
 end
