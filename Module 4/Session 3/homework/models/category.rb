@@ -32,6 +32,11 @@ class Category
         end
     end
 
+    def update(params)
+        client = create_db_client
+        client.query("update categories set name = '#{params['name']}' where id = #{id}")
+    end
+
     def self.parse(params)
         if params.nil?
             nil

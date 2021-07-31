@@ -107,4 +107,24 @@ describe Category do
             end
         end
     end
+
+    describe "#update" do
+        context 'with valid input' do
+            it 'should return updated category' do
+                params = {
+                    'name' => 'Dish',
+                }
+                item = Category.new({
+                    'id' => 1,
+                    'name' => 'old categories',
+                })
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("update categories set name = '#{params['name']}' where id = #{item.id}").and_return(params)
+                expected_result = item.update(params)
+
+                expect(expected_result).to eq(params)
+            end
+        end
+    end
 end
