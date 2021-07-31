@@ -127,4 +127,21 @@ describe Category do
             end
         end
     end
+
+    describe "#delete" do
+        context 'with valid input' do
+            it 'should return deleted category' do
+                category = Category.new({
+                    'id' => 1,
+                    'name' => 'deleted category',
+                })
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("delete from categories where id = '#{category.id}'").and_return(category)
+                expected_result = category.delete
+
+                expect(expected_result).to eq(category)
+            end
+        end
+    end
 end

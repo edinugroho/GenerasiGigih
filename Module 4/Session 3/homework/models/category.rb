@@ -37,6 +37,11 @@ class Category
         client.query("update categories set name = '#{params['name']}' where id = #{id}")
     end
 
+    def delete
+        client = create_db_client
+        client.query("delete from categories where id = '#{id}'")
+    end
+
     def self.parse(params)
         if params.nil?
             nil
