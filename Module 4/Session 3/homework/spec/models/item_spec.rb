@@ -89,6 +89,22 @@ describe Item do
                     expect(expected_items[index].price).to eq(items[index].price)              
                 end
             end
+
+            it 'should return one item' do
+                id = 1
+                mock_item = [
+                    {'id' => 1, 'name' => 'Baso', 'price' => 12000, 'categories'=> ''}
+                ]
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("select * from items where id = '#{id}'").and_return(mock_item)
+                item = Item.find(id).first
+
+                expected_item = Item.new(mock_item.first)
+                expect(expected_item.id).to eq(item.id)
+                expect(expected_item.name).to eq(item.name)
+                expect(expected_item.price).to eq(item.price)
+            end
         end  
     end
 end
