@@ -65,6 +65,30 @@ describe Item do
                 expect(mock_client).to receive(:query).with("select * from items")
                 Item.all
             end
+        end 
+
+        context "with result" do
+            it 'should return all items' do
+                mock_items = [
+                    {'id' => 1, 'name' => 'Baso', 'price' => 12000, 'categories'=> ''},
+                    {'id' => 2, 'name' => 'Mie', 'price' => 10000, 'categories'=> ''}
+                ]
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("select * from items").and_return(mock_items)
+                items = Item.all
+
+                expected_items = [
+                    Item.new(mock_items[0]),
+                    Item.new(mock_items[1])
+                ]
+
+                items.each_with_index do |variable, index|
+                    expect(expected_items[index].id).to eq(items[index].id)              
+                    expect(expected_items[index].name).to eq(items[index].name)              
+                    expect(expected_items[index].price).to eq(items[index].price)              
+                end
+            end
         end  
     end
 end
