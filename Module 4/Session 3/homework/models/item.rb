@@ -11,7 +11,13 @@ class Item
     end 
 
     def save
-        false
+        if self.valid?
+            client = create_db_client
+            client.query("insert into items (name,price) values ('#{name}','#{price}')")
+            true
+        else
+            false
+        end
     end
 
     def valid?
