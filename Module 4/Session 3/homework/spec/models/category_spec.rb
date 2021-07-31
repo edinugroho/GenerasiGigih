@@ -12,5 +12,15 @@ describe Category do
                 expect(result).to eq(false)
             end
         end
+
+        context "with valid object" do
+            it 'should return true if filled name' do
+                category = Category.new({
+                    'name' => 'category name'
+                })
+                result = category.valid?
+                expect(result).to eq(true)
+            end
+        end
     end
 end
