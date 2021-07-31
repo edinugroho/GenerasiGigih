@@ -141,4 +141,23 @@ describe Item do
             end
         end
     end
+
+    describe "#delete" do
+        context 'with valid input' do
+            it 'should return deleted item' do
+                item = Item.new({
+                    'id' => 1,
+                    'name' => 'deleted item',
+                    'price' => 20000,
+                    'categories' => '',
+                })
+                mock_client = double
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("delete from items where id = '#{item.id}'").and_return(item)
+                expected_result = item.delete
+
+                expect(expected_result).to eq(item)
+            end
+        end
+    end
 end

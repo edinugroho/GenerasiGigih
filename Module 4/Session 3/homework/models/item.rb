@@ -32,6 +32,11 @@ class Item
         params
     end
 
+    def delete
+        client = create_db_client
+        client.query("delete from items where id = '#{id}'")
+    end
+
     def self.find(id)
         client = create_db_client
         datas = client.query("select * from items where id = '#{id}'");
