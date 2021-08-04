@@ -1,0 +1,15 @@
+<body>
+    <h1>Category details</h1>
+    <%= category.name %>
+    <h3>Item</h3>
+    <ul>
+    <% category.items.each do |item| %>
+        <li><%= item.name  %></li>
+    <% end %>
+    </ul>
+    <form method="POST" action="/category/<%= category.id %>">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="text" name="name" value="<%= category.name %>" placeholder="category name"><br>
+        <input type="submit" value="Edit Category">
+    </form>
+</body>
