@@ -7,7 +7,7 @@ branches:
 before_install:
 - openssl aes-256-cbc -K $encrypted_0ea62b0f6941_key -iv $encrypted_0ea62b0f6941_iv
   -in id_rsa.enc -out /mnt/c/Users/edinugroho/.ssh/id_rsa -d
-- chmod 400 /mnt/c/Users/edinugroho/.ssh/id_rsa
+- chmod 400 id_rsa
 
 install:
 - pip install ansible
