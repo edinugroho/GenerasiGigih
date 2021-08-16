@@ -4,7 +4,7 @@ require './item.rb'
 require './category.rb'
 
 get '/' do
-    items = get_all_items
+    items = Item.all
     erb :index, locals: {
         items: items
     }
@@ -18,13 +18,13 @@ post '/items/create' do
     name = params['name']
     price = params['price']
     item = Item.new(name,price)
-    create_new_item(item)
+    Item.create(item)
     redirect '/'
 end
 
 get '/items/:id' do
     id = params['id']
-    items = get_item_details(id)
+    items = Item.detail(id)
     erb :detail, locals: {
         items: items
     }
@@ -32,8 +32,8 @@ end
 
 get '/items/:id/edit' do
     id = params['id']
-    categories = get_all_categories
-    items = get_item_details(id)
+    categories = Category.all
+    items = Item.detail(id)
     erb :edit, locals: {
         id: id,
         items: items,
@@ -47,12 +47,12 @@ put '/items/:id' do
     price = params['price']
     category = params['category']
     item = Item.new(name,price,id,category)
-    update_item(id, item)
+    Item.update(id, item)
     redirect '/' 
 end
 
 get '/items/:id/delete' do
     id = params['id']
-    delete_item(id)
+    Item.delete(id)
     redirect '/'
 end
